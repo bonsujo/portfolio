@@ -121,7 +121,7 @@ export default function Portfolio() {
 
           <div className="md:ml-8 mt-6 max-w-lg text-center md:text-left">
             <p className="text-lg text-gray-600 dark:text-gray-400">
-              Hello! I'm Josephine, a passionate full-stack developer, game
+              Hello! I&apos;m Josephine, a passionate full-stack developer, game
               enthusiast, and UI designer. I love creating intuitive and
               engaging user experiences while working with cutting-edge
               technologies. Feel free to explore my projects and connect with
