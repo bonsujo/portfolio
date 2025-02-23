@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { ThemeProvider } from "next-themes";
 import { Moon, Sun, Linkedin, Github } from "lucide-react"; 
 import Link from "next/link";
-import Image from "next/image";
 import "./globals.css";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
