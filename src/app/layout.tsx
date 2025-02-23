@@ -1,30 +1,69 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ThemeProvider } from "next-themes";
 import { Moon, Sun, Linkedin, Github } from "lucide-react"; 
 import Link from "next/link";
+import Image from "next/image";
 import "./globals.css";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [darkMode, setDarkMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  // Handle Scroll
+  const controlNavbar = () => {
+    if (typeof window !== "undefined") {
+      if (window.scrollY > lastScrollY) {
+        // Scroll down - Hide navbar
+        setShowNavbar(false);
+      } else {
+        // Scroll up - Show navbar
+        setShowNavbar(true);
+      }
+      setLastScrollY(window.scrollY);
+    }
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", controlNavbar);
+      return () => {
+        window.removeEventListener("scroll", controlNavbar);
+      };
+    }
+  }, [lastScrollY]);
 
   return (
     <>
       <html lang="en">
+        <head>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
+          />
+          <link rel="icon" href="/images/favicon.png" />
+          <title>Josephine Bonsu | Portfolio</title>
+        </head>
         <body>
           <ThemeProvider attribute="class">
             <div
               className={`min-h-screen transition-colors duration-300 ${
-                darkMode ? "bg-gray-950 text-gray-100" : "bg-gray-100 text-gray-900"
+                darkMode ? "bg-gray-950 text-gray-100" : "bg-[#fffefc] text-gray-900"
               }`}
             >
               {/* Header */}
-              <header className="p-4 sticky top-0 z-50 navbar">
+              <header
+                className={`p-4 sticky top-0 z-50 navbar transition-transform duration-300 ${
+                  showNavbar ? "transform translate-y-0" : "transform -translate-y-full"
+                }`}
+              >
                 <div className="container mx-auto flex items-center justify-between flex-wrap">
-                  {/* Name */}
+                  <Link href ="#home">
                   <h1 className="text-xl font-bold text-white">Josephine Bonsu</h1>
+                  </Link>
 
                   {/* Navbar (Desktop) */}
                   <nav className="hidden sm:flex space-x-6">
@@ -36,7 +75,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
                   {/* Right Section (Dark Mode & Social Links) */}
                   <div className="flex items-center gap-4">
-                    {/* LinkedIn & GitHub Icons */}
                     <a href="https://www.linkedin.com/in/josephineobonsu" target="_blank" rel="noopener noreferrer">
                       <Linkedin size={24} className="text-white hover:text-gray-300 transition-transform hover:scale-110" />
                     </a>
@@ -50,7 +88,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       className="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-all flex items-center gap-2"
                     >
                       {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-                      <span className="hidden sm:inline">Dark Mode</span>
                     </button>
 
                     {/* Mobile Menu Button */}
@@ -75,7 +112,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </header>
 
               {/* Main Content */}
-              <main className="container mx-auto p-8">
+              <main className="container mx-auto p-3">
                 <div id="home">{children}</div>
               </main>
 

@@ -12,8 +12,15 @@ import {
   FaAngular,
   FaCss3Alt,
   FaHtml5,
+  FaNodeJs,
+  FaDatabase
 } from "react-icons/fa"; // Import icons
 import Image from "next/image";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, A11y } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const projects = [
   {
@@ -21,19 +28,11 @@ const projects = [
     name: "MeteoPlan",
     description:
       "A full-stack application. It allows users create and manage events and task. It integrates the usage of OpenWeather API and Google Maps API to retrieve forecast and suggest venues.",
-    technologies: ["JavaScript", "Vue.js", "Npm", "Python", "Html", "Css"],
+    technologies: ["JavaScript", "Vue.js", "Npm", "Python", "Html", "Css", "RedisDB"],
     image: "/images/project-1.png",
   },
   {
     id: 2,
-    name: "Mystery Machine",
-    description:
-      "A 3D game built using Unity. Players navigate through a dark forest and attempt to find the exit while avoiding obstacles.",
-    technologies: ["Unity", "C#"],
-    image: "/images/project-2.png",
-  },
-  {
-    id: 3,
     name: "Online Blood Bank",
     description: "A capstone project designed for online blood bank donations.",
     technologies: [
@@ -47,32 +46,50 @@ const projects = [
     ],
     image: "/images/project-3.png",
   },
+  {
+    id: 3,
+    name: "Crown Curls",
+    description:
+      "In Process. A hair wash reminder application designed for people with curlier hair types. It features personalized care suggestions and wash reminders. Will further support mobile devices.",
+    technologies: ["Html","Css","NextJs", "NodeJs", "MongoDB", "JavaScript", "Figma"],
+    image: "/images/wireframe_landing_page.png",
+    wireframes: [
+      "/images/wireframe_landing_page.png",
+      "/images/wireframe_hair_assessment.png",
+      "/images/wireframe_assessment_results.png",
+    ],
+    status: "In Progress - Wireframing",
+  },
 ];
 
 const getTechIcon = (tech) => {
   switch (tech) {
     case "JavaScript":
-      return <FaJs className="text-yellow-500" />;
+      return <FaJs className="text-yellow-500 text-3xl" />;
     case "Vue.js":
-      return <FaVuejs className="text-green-500" />;
-    case "MongoDB":
-      return <i className="fab fa-mongodb text-green-600" />;
+      return <FaVuejs className="text-green-500 text-3xl" />;
     case "Npm":
-      return <FaNpm className="text-red-600" />;
+      return <FaNpm className="text-red-600 text-3xl" />;
     case "Python":
-      return <FaPython className="text-yellow-600" />;
+      return <FaPython className="text-yellow-600 text-3xl" />;
     case "Css":
-      return <FaCss3Alt className="text-blue-500" />;
+      return <FaCss3Alt className="text-blue-500 text-3xl" />;
     case "Html":
-      return <FaHtml5 className="text-red-500" />;
+      return <FaHtml5 className="text-red-500 text-3xl" />;
     case "Unity":
-      return <FaUnity className="text-white-700" />;
+      return <FaUnity className="text-white-700 text-3xl" />;
     case "C#":
-      return <i className="fab fa-csharp text-blue-600" />;
+      return <i className="fab fa-csharp text-blue-600 text-3xl" />;
     case "Figma":
-      return <FaFigma className="text-indigo-600" />;
+      return <FaFigma className="text-indigo-600 text-3xl" />;
     case "Angular":
-      return <FaAngular className="text-pink-500" />;
+      return <FaAngular className="text-pink-500 text-3xl " />;
+    case "NodeJs":
+      return <FaNodeJs className="text-green-500 text-3xl" />;
+    case "MongoDB":
+      return <FaDatabase className="text green-400 text-3xl"/>;
+    case "RedisDB":
+      return <FaDatabase className="text-red-400 text-3xl"/>;
     default:
       return null;
   }
@@ -91,18 +108,34 @@ export default function Portfolio() {
 
   return (
     <div className="min-h-screen p-8">
-      <motion.h1
-        className="text-5xl font-bold text-center text-gradient"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        Welcome to My Portfolio
-      </motion.h1>
+    <motion.div className="text-sm uppercase text-center font-semibold mb-4 text-primary tracking-[4px]" initial={{ opacity: 0, y: -20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8 }}>
+            Full-Stack Developer
+    </motion.div>
+  <motion.h1
+    className="text-5xl font-bold text-center h1 mb-4"
+    initial={{ opacity: 0, y: -20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8 }}
+  >
+    Hey, my name is Josephine
+  </motion.h1>
+  <motion.p
+    className="text-lg text-center mt-4"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ delay: 0.5 }}
+  >
+    I&apos;m a passionate full-stack developer and game
+              enthusiast. I love creating intuitive and
+              engaging user experiences while working with cutting-edge
+              technologies. Feel free to explore my projects and connect with
+              me! <b>Say Cheese!</b>
+  </motion.p>
 
       {/* About Me Section */}
       <div id="about" className="mt-16 text-center">
-        <h2 className="text-3xl font-semibold">About Me</h2>
         <div className="mt-8 flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0, x: -100 }}
@@ -119,17 +152,9 @@ export default function Portfolio() {
             />
           </motion.div>
 
-          <div className="md:ml-8 mt-6 max-w-lg text-center md:text-left">
-            <p className="text-lg text-gray-600 dark:text-gray-400">
-              Hello! I&apos;m Josephine, a passionate full-stack developer, game
-              enthusiast, and UI designer. I love creating intuitive and
-              engaging user experiences while working with cutting-edge
-              technologies. Feel free to explore my projects and connect with
-              me! <b>Say Cheese!</b>
-            </p>
-          </div>
         </div>
       </div>
+
 
       {/* Skills Section */}
       <div id="skills" className="mt-16 text-center">
@@ -138,12 +163,13 @@ export default function Portfolio() {
           {[
             "JavaScript",
             "Vue.js",
-            "Npm",
-            "Python",
             "Html",
             "Css",
+            "Python",
             "Unity",
+            "Npm",
             "Angular",
+            "MongoDB",
             "Figma",
           ].map((tech) => (
             <div key={tech} className="flex items-center space-x-2">
@@ -161,8 +187,8 @@ export default function Portfolio() {
         transition={{ delay: 0.5 }}
       ></motion.p>
 
-      {/**Project Section */}
-      <div id="projects" className="mt-12">
+        {/* Projects Section */}
+        <div id="projects" className="mt-12">
         <h2 className="text-3xl font-semibold text-center mb-8">Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
@@ -172,7 +198,6 @@ export default function Portfolio() {
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
-              {/* Parallax Image */}
               <motion.div
                 initial={{ y: "30%" }}
                 animate={{ y: 0 }}
@@ -187,7 +212,7 @@ export default function Portfolio() {
                 />
               </motion.div>
 
-              <h3 className="text-xl font-semibold">{project.name}</h3>
+              <h3 className="text-x dark:text-gray-100 font-semibold">{project.name}</h3>
               <p className="mt-2 text-gray-600 dark:text-gray-400">
                 {project.description}
               </p>
@@ -201,17 +226,17 @@ export default function Portfolio() {
           ))}
         </div>
       </div>
-
-      {/* Modal for Project Details */}
+      
+      {/*Description Section/Card*/}
       {modalProject && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white dark:bg-gray-800 p-8 rounded-lg max-w-md w-full shadow-lg">
-            <h3 className="text-2xl font-semibold">{modalProject.name}</h3>
-            <p className="mt-4 text-gray-600 dark:text-gray-400">
-              {modalProject.description}
-            </p>
-            <h4 className="mt-4 text-xl font-semibold">Technologies Used</h4>
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-3xl w-full">
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">{modalProject.name}</h2>
+            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">{modalProject.status}</p>
+            <p className="mt-4 text-gray-600 dark:text-gray-400">{modalProject.description}</p>
+            <h4 className="mt-4 text-xl font-semibold dark:text-indigo-200">Technologies Used</h4>
             <ul className="mt-2 flex flex-wrap gap-4">
+
               {modalProject.technologies.map((tech, index) => (
                 <li
                   key={index}
@@ -222,7 +247,34 @@ export default function Portfolio() {
                 </li>
               ))}
             </ul>
-            <div className="mt-6 text-right">
+
+            {modalProject.wireframes && (
+              <div className="mt-6">
+                <Swiper
+                  modules={[Navigation, Pagination, A11y]}
+                  spaceBetween={10}
+                  slidesPerView={1}
+                  navigation
+                  pagination={{ clickable: true }}
+                  className="rounded-lg shadow-md"
+                  style={{ maxWidth: '300px', margin: '0 auto' }} // Limit width and center the carousel
+                >
+                  {modalProject.wireframes.map((src, index) => (
+                    <SwiperSlide key={index}>
+                      <Image
+                        src={src}
+                        alt={`Wireframe ${index + 1} for ${modalProject.name}`}
+                        width={250}
+                        height={200}
+                        className="w-full h-auto object-contain rounded-lg"
+                      />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
+            )}
+
+      <div className="mt-6 text-right">
               <button
                 onClick={handleCloseModal}
                 className="py-2 px-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
@@ -234,10 +286,12 @@ export default function Portfolio() {
         </div>
       )}
 
+
+
       {/*Contact Section */}
       <div id="contact" className="mt-16 text-center">
         <h2 className="text-3xl font-semibold">Contact</h2>
-        <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
+        <p className="mt-4 text-lg">
           Feel free to reach out via email or social media!
         </p>
 
@@ -250,7 +304,7 @@ export default function Portfolio() {
             <div>
               <label
                 htmlFor="name"
-                className="block text-left text-lg font-medium text-gray-700 dark:text-gray-300"
+                className="block text-left text-lg font-medium"
               >
                 Your Name
               </label>
@@ -267,7 +321,7 @@ export default function Portfolio() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-left text-lg font-medium text-gray-700 dark:text-gray-300"
+                className="block text-left text-lg font-medium"
               >
                 Your Email
               </label>
@@ -284,7 +338,7 @@ export default function Portfolio() {
             <div>
               <label
                 htmlFor="message"
-                className="block text-left text-lg font-medium text-gray-700 dark:text-gray-300"
+                className="block text-left text-lg font-medium"
               >
                 Your Message
               </label>
