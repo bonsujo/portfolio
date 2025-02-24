@@ -109,7 +109,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   </div>
                 )}
               </header>
-
+              
               {/* Main Content */}
               <main className="container mx-auto p-3">
                 <div id="home">{children}</div>
