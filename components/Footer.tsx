@@ -2,7 +2,7 @@ import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai';
 
 const socialLinks = [
   { href: "https://github.com/bonsujo", Icon: AiFillGithub, label: "GitHub" },
-  { href: "https://linkedin.com/josephineobonsu", Icon: AiFillLinkedin, label: "Linkedln" },
+  { href: "https://linkedin.com/in/josephineobonsu", Icon: AiFillLinkedin, label: "Linkedln" },
 ];
 
 export const Footer = () => {
