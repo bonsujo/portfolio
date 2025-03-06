@@ -10,7 +10,7 @@ const educations = [
 export const Education= () => {
 
     return(
-        <section className="text-white py-20 glass" id="about"> 
+        <section className="text-white py-20" id="about"> 
         <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
