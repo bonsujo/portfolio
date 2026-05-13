@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 
 const educations = [
-    {id:'01', title: 'McMaster University, Bachelor of Technology', year:'2023 - Present',description: 'Coursework: Operating Systems, Software Requirements and Specification, Computer Security, Advanced Web Development'}, 
-    {id:'02', title: 'Mohwak College, Business Management Certificate', year:'2023 - Present', description: 'Coursework: Project Management, Financial Systems, Technical Communications, Managment Principles  '}, 
+    {id:'01', title: 'McMaster University, Bachelor of Technology', year:'2023 - 2025',description: 'Coursework: Operating Systems, Software Requirements and Specification, Computer Security, Advanced Web Development'}, 
+    {id:'02', title: 'Mohawk College, Business Management Certificate', year:'2023 - 2025', description: 'Coursework: Project Management, Financial Systems, Technical Communications, Managment Principles  '}, 
     {id:'03', title: 'Sheridan College, Advanced Diploma, Software and Network Engineering', year:'2019 - 2023', description: 'Coursework: User Design, User Interface, Web Programming and Development, Mobile Web-Based Applications, Database Management, Cloud Systems'}
 ]
 export const Education= () => {
